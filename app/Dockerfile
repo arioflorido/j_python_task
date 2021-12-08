@@ -10,6 +10,8 @@ EXPOSE 8001
 # creates a directory with this name if it doesn’t exist
 WORKDIR /code
 
+ENV DATABASE_URL=mysql+pymysql://root:root@db:3306/recipe_db
+
 # Install any needed packages specified in requirements.txt
 COPY ./requirements.txt /code/requirements.txt
 RUN python -m pip install --upgrade pip setuptools wheel
