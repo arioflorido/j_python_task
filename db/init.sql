@@ -2,26 +2,26 @@ CREATE DATABASE recipe_db;
 use recipe_db;
 
 CREATE TABLE ingredients (
-  ingredient_id int AUTO_INCREMENT,
-  ingredient_name VARCHAR(40),
+  id int AUTO_INCREMENT,
+  name VARCHAR(40),
   best_before date,
   use_by date,
-  PRIMARY KEY(ingredient_id)
+  PRIMARY KEY(id)
 );
 
 CREATE TABLE recipes (
-  recipe_id int AUTO_INCREMENT,
-  recipe_title VARCHAR(80),
-  PRIMARY KEY(recipe_id),
+  id int AUTO_INCREMENT,
+  title VARCHAR(80),
+  PRIMARY KEY(id),
 
   fk_ingredient_id int,
   CONSTRAINT fk_ingredient_id
   FOREIGN KEY (fk_ingredient_id)
-    REFERENCES ingredients(ingredient_id)
+    REFERENCES ingredients(id)
 );
 
 INSERT INTO ingredients
-  (ingredient_name, best_before, use_by)
+  (name, best_before, use_by)
 VALUES
   ('Bacon', '2021-12-10', '2021-12-12'),
   ('Eggs', '2021-12-11', '2021-12-13'),
@@ -31,7 +31,7 @@ VALUES
   ('Bread', '2021-12-10', '2021-12-12');
 
 INSERT INTO recipes
-  (recipe_title, fk_ingredient_id)
+  (title, fk_ingredient_id)
 VALUES
   ('Ham and Cheese Sandwich', 1),
   ('Ham and Cheese Sandwich', 2),
