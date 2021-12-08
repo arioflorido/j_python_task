@@ -22,16 +22,28 @@ CREATE TABLE ingredients (
 INSERT INTO recipes
   (title)
 VALUES
-  ('Ham and Cheese Sandwich');
+  ('Ham and Cheese Sandwich'),
+  ('Big Breakfast'),
+  ('Salad'),
+  ('Hotdog');
 
 INSERT INTO ingredients
   (name, best_before, use_by, recipe_id)
 VALUES
-  ('Bacon', '2021-12-10', '2021-12-12', 1),
-  ('Eggs', '2021-12-11', '2021-12-13', 1),
-  ('Baked Beans', '2021-12-12', '2021-12-15', 1),
-  ('Mushroom', '2021-12-10', '2021-12-12', 1),
+  ('Ham', '2021-12-10', '2021-12-12', 1),
+  ('Cheese', '2021-12-11', '2021-12-13', 1),
+  ('Bread', '2021-12-12', '2021-12-15', 1),
+  ('Butter', '2021-12-10', '2021-12-12', 1),
+  ('Eggs', '2021-12-10', '2021-12-12', 1),
+  ('Mushrooms', '2021-12-10', '2021-12-12', 1),
   ('Sausage', '2021-12-10', '2021-12-12', 1),
-  ('Bread', '2021-12-10', '2021-12-12', 1);
+  ('Hotdog Bun', '2021-12-10', '2021-12-12', 1),
+  ('Ketchup', '2021-12-10', '2021-12-12', 1),
+  ('Mustard', '2021-12-10', '2021-12-12', 1),
+  ('Lettuce', '2021-12-10', '2021-12-12', 1),
+  ('Tomato', '2021-12-10', '2021-12-12', 1),
+  ('Cucumber', '2021-12-10', '2021-12-12', 1),
+  ('Beetroot', '2021-12-10', '2021-12-12', 1),
+  ('Salad Dressing', '2021-12-10', '2021-12-12', 1);
 
 -- TODO Create Shelf life table?
