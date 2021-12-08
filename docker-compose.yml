@@ -7,7 +7,8 @@ services:
     ports:
       - "8001:8001"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     image: mysql:5.7
@@ -17,7 +18,6 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ./db:/docker-entrypoint-initdb.d:ro
-    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD
       timeout: 20s
