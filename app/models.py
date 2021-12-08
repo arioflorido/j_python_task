@@ -18,7 +18,6 @@ class Ingredient(Base):
         self.name = name
         self.recipe_id = recipe_id
 
-
     def __repr__(self) -> str:
         return f"<Ingredient {self.name}>"
 
@@ -28,7 +27,6 @@ class Ingredient(Base):
         Return item in serializeable format
         """
         return {
-            "id": self.id,
             "name": self.name
             }
 
@@ -41,9 +39,10 @@ class Recipe(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String)
 
-    def __init__(self, id: int, title: str, ingredient_id: int):
+    def __init__(self, id: int, title: str, ingredients: dict):
         self.id = id
         self.title = title
+        self.ingredients = ingredients
 
     def __repr__(self) -> str:
         return f"<Recipe {self.title}>"
@@ -54,6 +53,6 @@ class Recipe(Base):
         Return recipe in serializeable format
         """
         return {
-            "name": self.title,
-            "id" : self.id
+            "title": self.title,
+            "ingredients": self.ingredients
             }
