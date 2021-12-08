@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from .models import Ingredient, Recipe
+from models import Ingredient, Recipe
 
 def get_ingredient_by_id(db: Session, id: int) -> Ingredient:
     return db.query(Ingredient).filter(Ingredient.id == id).first()

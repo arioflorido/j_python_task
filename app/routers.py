@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from . import crud, models
-from .database import SessionLocal, engine
-from .schemas import IngredientBase, RecipeBase
+import crud
+import models
+from database import SessionLocal, engine
+from schemas import IngredientBase, RecipeBase
 
 models.Base.metadata.create_all(bind=engine)
 router = APIRouter()
