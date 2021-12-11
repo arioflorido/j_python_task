@@ -13,3 +13,15 @@ def get_ingredient_by_id(db: Session, id: int) -> Ingredient:
 
 def get_ingredients(db: Session, skip: int = 0, limit: int = 100) -> List[Ingredient]:
     return db.query(Ingredient).offset(skip).limit(limit).all()
+
+def add_ingredient(db: Session, ingredient_item: dict) -> Ingredient:
+    new_ingredient = Ingredient(**ingredient_item)
+    print(new_ingredient)
+    db.add(new_ingredient)
+    db.commit()
+    return new_ingredient
+
+def add_ingredients(db: Session, ingredient_items: list) -> List[Ingredient]:
+    #TODO: Implement transaction?
+    new_ingredients = [add_ingredient(db, ingredient) for ingredient in ingredient_items]
+    return new_ingredients

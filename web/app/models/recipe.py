@@ -9,13 +9,12 @@ class Recipe(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String)
 
-    def __init__(self, id: int, title: str, ingredients: dict):
-        self.id = id
+    def __init__(self, title: str, ingredients: dict):
         self.title = title
         self.ingredients = ingredients
 
     def __repr__(self) -> str:
-        return f"<Recipe {self.title}>"
+        return f'<Recipe {self.title}>'
 
     @property
     def serialize(self):
@@ -23,6 +22,6 @@ class Recipe(Base):
         Return recipe in serializeable format
         """
         return {
-            "title": self.title,
-            "ingredients": self.ingredients
+            'title': self.title,
+            'ingredients': self.ingredients
             }
