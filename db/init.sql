@@ -2,31 +2,32 @@ CREATE DATABASE recipe_db;
 use recipe_db;
 
 CREATE TABLE recipes (
-  id int AUTO_INCREMENT,
+  id INT AUTO_INCREMENT,
   title VARCHAR(80) UNIQUE,
-  is_available boolean,
+  is_available BOOLEAN DEFAULT 0,
   PRIMARY KEY(id)
 );
 
 CREATE TABLE ingredients (
-  id int AUTO_INCREMENT,
+  id INT AUTO_INCREMENT,
   name VARCHAR(40) UNIQUE,
-  best_before date,
-  use_by date,
-  is_expired boolean,
+  best_before DATE,
+  use_by DATE,
+  is_expired BOOLEAN,
   PRIMARY KEY(id)
 );
 
 CREATE TABLE recipe_ingredient(
-  id int AUTO_INCREMENT,
+  id INT AUTO_INCREMENT,
 
-  recipe_id int,
+  recipe_id INT,
   FOREIGN KEY (recipe_id)
     REFERENCES recipes(id),
 
-  ingredient_id int,
+  ingredient_id INT,
     FOREIGN KEY (ingredient_id)
       REFERENCES ingredients(id),
 
-  PRIMARY KEY(id)
+  PRIMARY KEY(id),
+  UNIQUE(recipe_id, ingredient_id)
 );
