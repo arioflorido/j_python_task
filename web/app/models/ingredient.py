@@ -10,12 +10,10 @@ class Ingredient(Base):
     name = Column(String)
     best_before = Column(Date)
     use_by = Column(Date)
-    recipe_id = Column(Integer, ForeignKey("recipe.id"))
 
-    def __init__(self, id: int, name: str, recipe_id: int):
+    def __init__(self, id: int, name: str):
         self.id = id
         self.name = name
-        self.recipe_id = recipe_id
 
     def __repr__(self) -> str:
         return f"<Ingredient {self.name}>"
