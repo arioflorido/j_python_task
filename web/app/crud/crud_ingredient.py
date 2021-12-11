@@ -11,6 +11,9 @@ def get_ingredient_by_recipe_id(db: Session, recipe_id: int) -> List[Ingredient]
 def get_ingredient_by_id(db: Session, id: int) -> Ingredient:
     return db.query(Ingredient).filter(Ingredient.id == id).first()
 
+def get_ingredient_by_name(db: Session, name: str) -> Ingredient:
+    return db.query(Ingredient).filter(Ingredient.name == name).first()
+
 def get_ingredients(db: Session, skip: int = 0, limit: int = 100) -> List[Ingredient]:
     return db.query(Ingredient).offset(skip).limit(limit).all()
 

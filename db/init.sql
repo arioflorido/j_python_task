@@ -4,6 +4,7 @@ use recipe_db;
 CREATE TABLE recipes (
   id int AUTO_INCREMENT,
   title VARCHAR(80) UNIQUE,
+  is_available boolean,
   PRIMARY KEY(id)
 );
 
@@ -12,6 +13,7 @@ CREATE TABLE ingredients (
   name VARCHAR(40) UNIQUE,
   best_before date,
   use_by date,
+  is_expired boolean,
   PRIMARY KEY(id)
 );
 

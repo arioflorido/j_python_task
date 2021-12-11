@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean
 from app.database.session import Base
 
 class Recipe(Base):
@@ -8,10 +8,11 @@ class Recipe(Base):
 
     id = Column(Integer, primary_key=True)
     title = Column(String)
+    is_available = Column(Boolean)
 
-    def __init__(self, title: str, ingredients: dict):
+    def __init__(self, title: str):
         self.title = title
-        self.ingredients = ingredients
+        self.is_available = False
 
     def __repr__(self) -> str:
         return f'<Recipe {self.title}>'
