@@ -23,7 +23,7 @@
    - Example: 
      - python loader.py ingredients --infile input_files/ingredients.json
      - python loader.py recipe --infile input_files/recipe.json
-     - Note: Ingredients data must be loaded prior loading the recipes 
+   - Note: Ingredients data must be loaded prior loading the recipes 
 
 ## Todos:
 - Improve CRUD scripts
