@@ -24,8 +24,14 @@
      - python loader.py recipe --infile input_files/recipe.json
    - Note: Ingredients data must be loaded prior loading the recipes .
 
+## Bugs:
+- fetch_available_only and sort by freshness logic does not seem to work when docker image is built in Windows.
+  This issue does not occur when docker image is built in WSL2 / Ubuntu 18.04.
+
 ## Todos:
 - Improve CRUD scripts
 - Move expiration / sorting logic from the loader.py to the web service
 - Write Tests
+- Investigate cause of bugs
 - Documentation
+
