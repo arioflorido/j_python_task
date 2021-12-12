@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -17,8 +17,9 @@ def read_recipe(id: int, db: Session = Depends(get_session)):
     return recipe.serialize
 
 @router.get("/recipes/", response_model=List[RecipeBase])
-def read_recipes(skip: int = 0, limit: int = 100, db: Session = Depends(get_session)):
-    recipes = crud.get_recipes(db=db, skip=skip, limit=limit)
+def read_recipes(skip: int = 0, limit: int = 100, fetch_available_only: Optional[bool] = False, db: Session = Depends(get_session)):
+    recipes = crud.get_recipes(db=db, skip=skip, limit=limit, fetch_available_only=fetch_available_only)
+
     for recipe in recipes:
         recipe.ingredients  = get_recipe_ingredients(db, recipe)
     return [i.serialize for i in recipes]
