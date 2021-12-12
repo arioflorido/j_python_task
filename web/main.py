@@ -1,4 +1,3 @@
-# from logging import debug
 from fastapi import FastAPI, APIRouter
 from app.api.v1.api import api_router
 import uvicorn

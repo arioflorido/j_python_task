@@ -1,4 +1,3 @@
-from typing import List
 from sqlalchemy.orm import Session
 from app.models.recipe_ingredient import RecipeIngredient
 
