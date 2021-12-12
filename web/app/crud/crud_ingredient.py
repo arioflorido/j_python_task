@@ -18,9 +18,16 @@ def get_ingredients(db: Session, skip: int = 0, limit: int = 100) -> List[Ingred
     return db.query(Ingredient).offset(skip).limit(limit).all()
 
 def add_ingredient(db: Session, ingredient_item: dict) -> Ingredient:
+    existing_ingredient = db.query(Ingredient).filter(Ingredient.name == ingredient_item['name']).first()
     new_ingredient = Ingredient(**ingredient_item)
-    db.add(new_ingredient)
-    db.commit()
+    if not existing_ingredient:
+        db.add(new_ingredient)
+        db.commit()
+    else:
+        # update if ingredient exist
+        if (existing_ingredient.serialize != ingredient_item):
+            existing_ingredient.best_before = ingredient_item['best_before']
+            existing_ingredient.best_before = ingredient_item['use_by']
     return new_ingredient
 
 def add_ingredients(db: Session, ingredient_items: list) -> List[Ingredient]:

@@ -30,5 +30,7 @@ class Ingredient(Base):
         Return item in serializeable format
         """
         return {
-            'name': self.name
+            'name' : self.name,
+            'use_by' : str(self.use_by),
+            'best_before' : str(self.best_before)
             }
