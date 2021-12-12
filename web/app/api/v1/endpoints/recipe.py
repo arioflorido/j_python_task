@@ -17,7 +17,7 @@ def read_recipe(id: int, db: Session = Depends(get_session)):
     return recipe.serialize
 
 @router.get("/recipes/", response_model=List[RecipeBase])
-def read_recipes(skip: int = 0, limit: int = 100, fetch_available_only: Optional[bool] = False, db: Session = Depends(get_session)):
+def read_recipes(skip: int = 0, limit: int = 100, fetch_available_only: Optional[bool] = True, db: Session = Depends(get_session)):
     recipes = crud.get_recipes(db=db, skip=skip, limit=limit, fetch_available_only=fetch_available_only)
 
     for recipe in recipes:

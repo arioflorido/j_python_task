@@ -6,6 +6,7 @@ def get_recipe_by_id(db: Session, id: int) -> Recipe:
     return db.query(Recipe).filter(Recipe.id == id).first()
 
 def get_recipes(db: Session, skip: int = 0, limit: int = 100, fetch_available_only: bool = False) -> List[Recipe]:
+    # TODO MOVE FRESHNESS AND EXPIRED LOGIC
     if fetch_available_only:
         return db.query(Recipe).filter(Recipe.is_available == True).order_by(Recipe.is_fresh).offset(skip).limit(limit).all()
     return db.query(Recipe).offset(skip).limit(limit).all()
