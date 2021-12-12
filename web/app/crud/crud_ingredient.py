@@ -14,7 +14,9 @@ def get_ingredient_by_id(db: Session, id: int) -> Ingredient:
 def get_ingredient_by_name(db: Session, name: str) -> Ingredient:
     return db.query(Ingredient).filter(Ingredient.name == name).first()
 
-def get_ingredients(db: Session, skip: int = 0, limit: int = 100) -> List[Ingredient]:
+def get_ingredients(db: Session, skip: int = 0, limit: int = 100, ignore_expired: bool = False) -> List[Ingredient]:
+    if not ignore_expired:
+        return db.query(Ingredient).filter(Ingredient.is_expired == False).offset(skip).limit(limit).all()
     return db.query(Ingredient).offset(skip).limit(limit).all()
 
 def upsert_ingredient(db: Session, ingredient_item: dict) -> Ingredient:
