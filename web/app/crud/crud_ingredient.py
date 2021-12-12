@@ -17,7 +17,7 @@ def get_ingredient_by_name(db: Session, name: str) -> Ingredient:
 def get_ingredients(db: Session, skip: int = 0, limit: int = 100) -> List[Ingredient]:
     return db.query(Ingredient).offset(skip).limit(limit).all()
 
-def add_ingredient(db: Session, ingredient_item: dict) -> Ingredient:
+def upsert_ingredient(db: Session, ingredient_item: dict) -> Ingredient:
     existing_ingredient = db.query(Ingredient).filter(Ingredient.name == ingredient_item['name']).first()
     new_ingredient = Ingredient(**ingredient_item)
     if not existing_ingredient:
@@ -33,6 +33,6 @@ def add_ingredient(db: Session, ingredient_item: dict) -> Ingredient:
 
     return new_ingredient
 
-def add_ingredients(db: Session, ingredient_items: list) -> List[Ingredient]:
+def upsert_ingredients(db: Session, ingredient_items: list) -> List[Ingredient]:
     #TODO: Implement transaction?
-    return [add_ingredient(db, ingredient) for ingredient in ingredient_items]
+    return [upsert_ingredient(db, ingredient) for ingredient in ingredient_items]
