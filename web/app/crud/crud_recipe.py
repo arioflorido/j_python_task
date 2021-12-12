@@ -7,7 +7,7 @@ def get_recipe_by_id(db: Session, id: int) -> Recipe:
 
 def get_recipes(db: Session, skip: int = 0, limit: int = 100, fetch_available_only: bool = False) -> List[Recipe]:
     if fetch_available_only:
-        return db.query(Recipe).filter(Recipe.is_available == True).offset(skip).limit(limit).all()
+        return db.query(Recipe).filter(Recipe.is_available == True).order_by(Recipe.is_fresh).offset(skip).limit(limit).all()
     return db.query(Recipe).offset(skip).limit(limit).all()
 
 def upsert_recipe(db: Session, recipe_item: dict) -> Recipe:

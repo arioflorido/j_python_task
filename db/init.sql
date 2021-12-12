@@ -3,17 +3,18 @@ use recipe_db;
 
 CREATE TABLE recipes (
   id INT AUTO_INCREMENT NOT NULL,
-  title VARCHAR(80) UNIQUE,
-  is_available BOOLEAN DEFAULT 0,
+  title VARCHAR(80) UNIQUE NOT NULL,
+  is_fresh BOOLEAN NOT NULL DEFAULT 1,
+  is_available BOOLEAN NOT NULL DEFAULT 1,
   PRIMARY KEY(id)
 );
 
 CREATE TABLE ingredients (
   id INT AUTO_INCREMENT NOT NULL,
-  name VARCHAR(40) UNIQUE,
-  best_before DATE,
-  use_by DATE,
-  is_expired BOOLEAN DEFAULT 0,
+  name VARCHAR(40) UNIQUE NOT NULL,
+  best_before DATE NOT NULL,
+  use_by DATE NOT NULL,
+  is_expired BOOLEAN NOT NULL DEFAULT 0,
   PRIMARY KEY(id)
 );
 

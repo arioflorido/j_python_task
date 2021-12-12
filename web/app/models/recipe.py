@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy.sql.expression import false
 from app.database.session import Base
 
 class Recipe(Base):
@@ -9,11 +10,13 @@ class Recipe(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     is_available = Column(Boolean)
+    is_fresh = Column(Boolean)
     ingredients = list()
 
-    def __init__(self, title: str):
+    def __init__(self, title: str, is_fresh: bool, is_available: bool):
         self.title = title
-        self.is_available = False
+        self.is_fresh = is_fresh
+        self.is_available = is_available
 
     def __repr__(self) -> str:
         return f'<Recipe {self.title}>'
@@ -25,6 +28,7 @@ class Recipe(Base):
         """
         return {
             'title': self.title,
+            'is_fresh': self.is_fresh,
             'is_available': self.is_available,
             'ingredients': self.ingredients
             }

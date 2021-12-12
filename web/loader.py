@@ -33,23 +33,37 @@ def main():
 
 
 def load_to_recipes_table(recipe_data: list):
+    # TODO: REFACTOR / ENHANCE
     ingredients = crud.get_ingredients(db)
     if not ingredients:
         print('Error: Load some ingredients first before loading the recipes!')
         return
 
     for item in recipe_data:
-        recipe_data = {'title': item['title']}
+        recipe_data = {
+            'title': item['title'],
+            'is_fresh': True,
+            'is_available': True
+            }
+
         recipe = crud.upsert_recipe(db, recipe_data)
 
         if not recipe:
-            return
+            continue
 
         for ingredient_name in item['ingredients']:
             ingredient = crud.get_ingredient_by_name(db=db, name=ingredient_name)
 
+            # TODO: Logic for checking is_fresh should live in API and not here.
             if ingredient:
                 crud.upsert_recipe_ingredient(db, recipe_id=recipe.id, ingredient_id=ingredient.id)
+                if recipe_data['is_fresh'] and ingredient.best_before >= today:
+                    recipe_data['is_fresh'] = False
+            else:
+                if recipe_data['is_available']:
+                    recipe_data['is_available'] = False
+
+        recipe = crud.upsert_recipe(db, recipe_data)
 
 
 def load_to_ingredients_table(ingredients_data: list):
