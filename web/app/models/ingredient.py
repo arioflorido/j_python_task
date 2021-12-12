@@ -34,3 +34,8 @@ class Ingredient(Base):
             'use_by' : str(self.use_by),
             'best_before' : str(self.best_before)
             }
+
+    def __bool__(self):
+        if self.id is None:
+            return False
+        return True

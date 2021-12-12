@@ -16,3 +16,8 @@ class RecipeIngredient(Base):
 
     def __repr__(self) -> str:
         return f"<RecipeIngredient {self.recipe_id}|{self.ingredient_id}>"
+
+    def __bool__(self):
+        if self.id is None:
+            return False
+        return True

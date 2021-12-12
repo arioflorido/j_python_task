@@ -24,5 +24,10 @@ class Recipe(Base):
         """
         return {
             'title': self.title,
-            'ingredients': self.ingredients
+            'is_available': self.is_available
             }
+
+    def __bool__(self):
+        if self.id is None:
+            return False
+        return True

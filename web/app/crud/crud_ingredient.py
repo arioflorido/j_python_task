@@ -26,8 +26,11 @@ def add_ingredient(db: Session, ingredient_item: dict) -> Ingredient:
     else:
         # update if ingredient exist
         if (existing_ingredient.serialize != ingredient_item):
-            existing_ingredient.best_before = ingredient_item['best_before']
-            existing_ingredient.best_before = ingredient_item['use_by']
+            existing_ingredient.best_before = new_ingredient.best_before
+            existing_ingredient.best_before = new_ingredient.use_by
+            existing_ingredient.is_expired = new_ingredient.is_expired
+            db.commit()
+
     return new_ingredient
 
 def add_ingredients(db: Session, ingredient_items: list) -> List[Ingredient]:
