@@ -19,7 +19,7 @@ class Ingredient(Base):
         self.name = name
         self.best_before = best_before
         self.use_by = use_by
-        self.is_expired = datetime.strptime(use_by, '%Y-%m-%d').date() > today
+        self.is_expired = datetime.strptime(use_by, '%Y-%m-%d').date() < today
 
     def __repr__(self) -> str:
         return f'<Ingredient {self.name}>'

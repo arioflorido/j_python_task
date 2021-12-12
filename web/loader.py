@@ -12,7 +12,6 @@ DATA_TYPE = (
 db = SessionLocal()
 today = date.today()
 
-
 def main():
     # Example usage
     # python loader.py ingredients --infile input_files/ingredients.json
@@ -59,7 +58,8 @@ def load_to_recipes_table(recipe_data: list):
                 crud.upsert_recipe_ingredient(db, recipe_id=recipe.id, ingredient_id=ingredient.id)
                 if recipe_data['is_fresh'] and ingredient.best_before >= today:
                     recipe_data['is_fresh'] = False
-            else:
+
+            if not ingredient or ingredient.is_expired:
                 if recipe_data['is_available']:
                     recipe_data['is_available'] = False
 
