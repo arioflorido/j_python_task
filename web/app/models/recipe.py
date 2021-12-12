@@ -9,6 +9,7 @@ class Recipe(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     is_available = Column(Boolean)
+    ingredients = list()
 
     def __init__(self, title: str):
         self.title = title
@@ -24,7 +25,8 @@ class Recipe(Base):
         """
         return {
             'title': self.title,
-            'is_available': self.is_available
+            'is_available': self.is_available,
+            'ingredients': self.ingredients
             }
 
     def __bool__(self):
