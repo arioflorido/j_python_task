@@ -32,6 +32,8 @@
 - Improve CRUD scripts
 - Move expiration / sorting logic from the loader.py to the web service
 - Write Tests
+- Improve docker script
+- Improve project structure
 - Investigate cause of bugs
 - Documentation
 
