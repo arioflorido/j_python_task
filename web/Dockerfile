@@ -1,5 +1,5 @@
 # Use an official Python runtime as an image
-FROM python:3.6
+FROM python:3.8
 
 # The EXPOSE instruction indicates the ports on which a container
 # will listen for connections
@@ -13,9 +13,10 @@ WORKDIR /code
 ENV DATABASE_URL='mysql+pymysql://root:root@db:3306/recipe_db'
 
 # Install any needed packages specified in requirements.txt
-COPY ./requirements.txt /code/requirements.txt
-RUN python -m pip install --upgrade pip setuptools wheel
-RUN pip install -r requirements.txt
+COPY ./Pipfile ./Pipfile.lock /code/
+RUN python -m pip install --upgrade pip
+RUN python -m pip install pipenv
+RUN pipenv install --system
 
 COPY . /code/
 

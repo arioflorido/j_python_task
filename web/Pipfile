@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "==0.99.0"
+sqlalchemy = "==2.0.17"
+sqlalchemy-orm = "==1.2.2"
+pymysql = "==1.1.0"
+uvicorn = "==0.22.0"
+
+[dev-packages]
+pylint = "==2.17.4"
+black = "==23.3.0"
+
+[requires]
+python_version = "3.8"
